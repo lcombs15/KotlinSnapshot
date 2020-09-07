@@ -20,9 +20,9 @@ android:
     - extra-android-m2repository
 
 script:
-  - ./gradlew ktlint test install --info
+  - ./gradlew ktlint test install
   - ./gradlew install
   - cd KotlinConsumer
-  - ./gradlew test --info
+  - ./gradlew test
   - cd ../AndroidConsumer
-  - ./gradlew test --info
+  - ./gradlew test
