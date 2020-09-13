@@ -31,7 +31,7 @@ class Camera(relativePath: String = "") {
     }
 
     private val shouldUpdateSnapshots: Boolean by lazy {
-        System.getProperty("updateSnapshots") == "1"
+        System.getenv("updateSnapshots") == "1" || System.getProperty("updateSnapshots") == "1"
     }
 
     private fun differsFromSnapshot(diffs: List<DiffMatchPatch.Diff>): Boolean =
