@@ -16,13 +16,14 @@ buildscript {
         classpath("com.karumi.kotlinsnapshot:plugin:2.2.1-SNAPSHOT")
     }
     repositories {
-        maven { url = uri("../repo") }
+        maven { url  = uri("../repo") }
     }
 }
 
 
 repositories {
     mavenCentral()
+    maven { url  = uri("../repo") }
 }
 
 dependencies {
