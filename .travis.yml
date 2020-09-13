@@ -26,3 +26,5 @@ script:
   - ./gradlew test
   - cd ../AndroidConsumer
   - ./gradlew test
+  - cd ../SpringConsumer
+  - updateSnapshots=1 ./gradlew test
