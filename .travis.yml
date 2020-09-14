@@ -43,7 +43,7 @@ jobs:
       env:
         - updateSnapshots=1
       script:
-        - cd AndroidConsumer
+        - cd SpringConsumer
         - ./gradlew test
     - stage: test
       jdk: oraclejdk8
