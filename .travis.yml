@@ -21,8 +21,8 @@ android:
     - extra-android-m2repository
 
 script:
-  - ./gradlew ktlint test install
-  - cd ../SpringConsumer
+  - ./gradlew install
+  - cd SpringConsumer
   - updateSnapshots=1 ./gradlew test --debug
   - exit 0
   - cd KotlinConsumer
