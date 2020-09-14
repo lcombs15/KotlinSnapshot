@@ -24,20 +24,6 @@ jobs:
       script:
         - ./gradlew ktlint test
     - stage: test
-      jdk: oraclejdk9
-      name: KotlinConsumer
-      script:
-        - cd KotlinConsumer
-        - ./gradlew test
-    - stage: test
-      jdk: oraclejdk11
-      name: SpringConsumer
-      env:
-        - updateSnapshots=1
-      script:
-        - cd SpringConsumer
-        - ./gradlew test
-    - stage: test
       jdk: oraclejdk8
       name: AndroidConsumer
       env:
@@ -56,4 +42,18 @@ jobs:
           - extra-android-m2repository
       script:
         - cd AndroidConsumer
+        - ./gradlew test
+    - stage: test
+      jdk: oraclejdk9
+      name: KotlinConsumer
+      script:
+        - cd KotlinConsumer
+        - ./gradlew test
+    - stage: test
+      jdk: oraclejdk11
+      name: SpringConsumer
+      env:
+        - updateSnapshots=1
+      script:
+        - cd SpringConsumer
         - ./gradlew test
