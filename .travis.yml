@@ -22,10 +22,9 @@ android:
 
 script:
   - ./gradlew ktlint test install
-  - ./gradlew install
+  - cd ../SpringConsumer
+  - updateSnapshots=1 ./gradlew test --debug
   - cd KotlinConsumer
   - ./gradlew test
   - cd ../AndroidConsumer
   - ./gradlew test
-  - cd ../SpringConsumer
-  - updateSnapshots=1 ./gradlew test --info
