@@ -24,6 +24,7 @@ script:
   - ./gradlew ktlint test install
   - cd ../SpringConsumer
   - updateSnapshots=1 ./gradlew test --debug
+  - exit 0
   - cd KotlinConsumer
   - ./gradlew test
   - cd ../AndroidConsumer
