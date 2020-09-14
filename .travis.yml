@@ -16,17 +16,6 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-
-script:
-  - ./gradlew ktlint test install
-  - ./gradlew install
-  - cd KotlinConsumer
-  - ./gradlew test
-  - cd ../AndroidConsumer
-  - ./gradlew test
-  - cd ../SpringConsumer
-  - updateSnapshots=1 ./gradlew test --info
-
 jobs:
   include:
     - stage: test
