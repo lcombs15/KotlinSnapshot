@@ -1,8 +1,5 @@
 os: linux
 language: java
-env:
-  global:
-    - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
 
 stages:
   - test
@@ -29,6 +26,8 @@ jobs:
     - stage: test
       jdk: oraclejdk8
       name: AndroidConsumer
+      env:
+        - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
       language: android
       android:
         components:
