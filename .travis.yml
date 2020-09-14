@@ -16,16 +16,13 @@ android:
     - android-28
 
 stages:
-  - build
   - test
+
+before_script:
+  - ./gradlew install
 
 jobs:
   include:
-    - stage: build
-      name: Build Plugin
-      jdk: oraclejdk8
-      script:
-        - ./gradlew install
     - stage: test
       jdk: oraclejdk8
       name: KotlinConsumer
