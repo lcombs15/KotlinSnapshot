@@ -1,4 +1,3 @@
-language: android
 os: linux
 env:
   global:
@@ -29,6 +28,7 @@ jobs:
     - stage: test
       jdk: oraclejdk8
       name: AndroidConsumer
+      language: android
       android:
         components:
           - tools
