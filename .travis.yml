@@ -1,24 +1,21 @@
-language: android
-sudo: required
-env:
-  global:
-    - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
-    - SH=bash
+os: linux
+language: java
 
-jdk:
-  - oraclejdk8
+stages:
+  - test
 
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-28.0.0-rc02
-    - build-tools-27.0.3
-    - android-27
-    - android-28
-    - extra-android-support
-    - extra-google-m2repository
-    - extra-android-m2repository
+before_script:
+  - ./gradlew ktlint test install
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
 
 script:
   - ./gradlew ktlint test install
@@ -29,3 +26,40 @@ script:
   - ./gradlew test
   - cd ../SpringConsumer
   - updateSnapshots=1 ./gradlew test --info
+
+jobs:
+  include:
+    - stage: test
+      jdk: oraclejdk9
+      name: KotlinConsumer
+      script:
+        - cd KotlinConsumer
+        - ./gradlew test
+    - stage: test
+      jdk: oraclejdk11
+      name: SpringConsumer
+      env:
+        - updateSnapshots=1
+      script:
+        - cd SpringConsumer
+        - ./gradlew test
+    - stage: test
+      jdk: oraclejdk8
+      name: AndroidConsumer
+      env:
+        - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
+      language: android
+      android:
+        components:
+          - tools
+          - platform-tools
+          - build-tools-28.0.0-rc02
+          - build-tools-27.0.3
+          - android-27
+          - android-28
+          - extra-android-support
+          - extra-google-m2repository
+          - extra-android-m2repository
+      script:
+        - cd AndroidConsumer
+        - ./gradlew test
