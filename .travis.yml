@@ -4,17 +4,6 @@ env:
   global:
     - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
 
-jdk:
-  - oraclejdk8
-  - oraclejdk11
-
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-28.0.0-rc02
-    - android-28
-
 stages:
   - test
 
@@ -40,6 +29,12 @@ jobs:
     - stage: test
       jdk: oraclejdk8
       name: AndroidConsumer
+      android:
+        components:
+          - tools
+          - platform-tools
+          - build-tools-28.0.0-rc02
+          - android-28
       script:
         - cd AndroidConsumer
         - ./gradlew test
