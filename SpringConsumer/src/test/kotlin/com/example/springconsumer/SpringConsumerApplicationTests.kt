@@ -9,7 +9,7 @@ class SpringConsumerApplicationTests {
 
     @Test
     fun contextLoads() {
-        // This test intentionally forces the snapshots to broken
+        // This test intentionally forces the snapshots to be invalid
         // This is meant to test the update snapshot ability
         9001.matchWithSnapshot()
         9002.matchWithSnapshot()
