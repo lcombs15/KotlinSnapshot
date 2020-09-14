@@ -28,4 +28,4 @@ script:
   - cd ../AndroidConsumer
   - ./gradlew test
   - cd ../SpringConsumer
-  - updateSnapshots=1 ./gradlew test
+  - updateSnapshots=1 ./gradlew test --info
