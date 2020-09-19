@@ -1,5 +1,6 @@
 os: linux
 language: java
+virt: lxd
 
 stages:
   - test
