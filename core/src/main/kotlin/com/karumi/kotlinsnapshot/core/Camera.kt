@@ -88,9 +88,12 @@ internal class Camera(
             return snapshotDir
         }
 
+        fun snapshotPurgingEnabled(): Boolean =
+            System.getenv("purgeSnapshots") == "1" || System.getProperty("purgeSnapshots") == "1"
+
         fun purgeSnapshotsIfNeeded(snapshotDir: File) {
             val pathToPurge = snapshotDir.absolutePath
-            val shouldPurge = System.getProperty("purgeSnapshots") == "1" &&
+            val shouldPurge = snapshotPurgingEnabled() &&
                 !purgedDirectories.contains(pathToPurge)
 
             if (shouldPurge) {
