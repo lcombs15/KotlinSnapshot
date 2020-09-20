@@ -1,5 +1,7 @@
 os: linux
 language: java
+# lxd is more of a docker solution rather than a full blown VM
+# These are much faster
 virt: lxd
 
 stages:
@@ -17,6 +19,10 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
+# This CI is rather expensive for the size of the project
+#
+# So we don't have to wait forever for the CI to run, everything in the `test` stage
+# will run in parallel.
 jobs:
   include:
     - stage: test
@@ -27,10 +33,9 @@ jobs:
     - stage: test
       jdk: oraclejdk8
       name: AndroidConsumer
-      env:
-        - ADB_INSTALL_TIMEOUT=8 # 8 minutes (2 minutes by default)
       language: android
       android:
+        # Please keep these as slim as possible as they SIGNIFICANTLY slow down the build
         components:
           - build-tools-28.0.0-rc02
           - build-tools-27.0.3
